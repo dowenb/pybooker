@@ -36,8 +36,10 @@ def add_booking(firstname = 'Jim', lastname = 'Brown', totalprice = 111, deposit
         "additionalneeds" : additionalneeds
     })
 
-def remove_booking(booking_id):
-    return requests.delete(_url('/bookings/{:d}/'.format(booking_id)))
+def remove_booking(booking_id, auth_token):
+    return requests.delete(_url('/booking/{:d}/'.format(booking_id)), cookies={
+        "token" : auth_token
+    })
 
 def update_booking(booking_id, auth_token, firstname = 'Jim', lastname = 'Brown', totalprice = 111, depositpaid = True, checkin = '2018-01-01', checkout = '2019-01-01', additionalneeds = 'Breakfast'):
     return requests.put(_url('/booking/{:d}/'.format(booking_id)), json={
@@ -59,4 +61,4 @@ def get_authtoken(username = 'admin', password = 'password123'):
     return requests.post(url, json={
         "username" : username,
         "password" : password
-    })
+    }).json()['token']
