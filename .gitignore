@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.vscode/settings.json
+assets/style.css
+out_report.xml
+report.html
+report.xml
