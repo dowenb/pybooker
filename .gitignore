@@ -109,3 +109,8 @@ venv.bak/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.vscode/settings.json
+assets/style.css
+out_report.xml
+report.html
+report.xml
