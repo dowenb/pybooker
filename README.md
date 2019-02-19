@@ -9,3 +9,6 @@ I am also making use of the assert_that module (https://github.com/ActivisionGam
 
 You can run the test in pytest using:
 pytest .\test_restfull_bookings.py
+
+Install requirements with:
+install -r requirements.txt
