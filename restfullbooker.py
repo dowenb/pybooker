@@ -1,5 +1,6 @@
 # restfullbooker.py
 import requests
+from booking_generator import GenerateBooking
 
 def _url(path):
     return 'https://restful-booker.herokuapp.com' + path
@@ -23,18 +24,11 @@ def get_bookings(firstname="", lastname="", checkin="", checkout=""):
 def describe_booking(booking_id):
     return requests.get(_url('/booking/{:d}/'.format(booking_id)))
 
-def add_booking(firstname = 'Jim', lastname = 'Brown', totalprice = 111, depositpaid = True, checkin = '2018-01-01', checkout = '2019-01-01', additionalneeds = 'Breakfast'):
-    return requests.post(_url('/booking/'), json={
-        "firstname" : firstname,
-        "lastname" : lastname,
-        "totalprice" : totalprice,
-        "depositpaid" : depositpaid,
-        "bookingdates" : {
-            "checkin" : checkin,
-            "checkout" : checkin
-        },
-        "additionalneeds" : additionalneeds
-    })
+def add_random_booking():
+    return add_booking(GenerateBooking())
+
+def add_booking(booking):
+    return requests.post(_url('/booking/'), json=booking)
 
 def remove_booking(booking_id, auth_token):
     return requests.delete(_url('/booking/{:d}/'.format(booking_id)), cookies={
